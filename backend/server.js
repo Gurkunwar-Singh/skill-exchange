@@ -15,7 +15,7 @@ const agreementRoutes=require("./routes/agreements")
 const teamRoutes = require('./routes/teams');
 
 const prodOrigin = [process.env.ORIGIN_1, process.env.ORIGIN_2].filter(Boolean);
-const devOrigin=[ 'http://localhost:5173',]
+const devOrigin=[ process.env.FRONT_URL,]
 //http://localhost:5173', 'http://localhost:5174','http://localhost:5175'
 const allowedOrigins = process.env.NODE_ENV==='production'?prodOrigin:devOrigin;
 dotenv.config();
@@ -52,6 +52,10 @@ app.use(cors({
 
 // Connect to MongoDB
 connectDB();
+
+app.get("/api/health", (req, res) => {
+  res.send("✅ Backend is alive!");
+});
 
 
 // Routes
