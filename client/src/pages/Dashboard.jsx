@@ -391,7 +391,7 @@ const Dashboard = () => {
                     {request.status === "pending" && (
                       <button
                         onClick={() => updateRequestStatus(request._id, "accepted")}
-                        className="px-3 py-1 rounded-md font-semibold bg-green-500 hover:bg-green-600 text-white"
+                        className="bg-yellow-500 px-3 py-1 rounded-md hover:bg-yellow-600 text-white"
                       >
                         Accept
                       </button>
@@ -399,7 +399,7 @@ const Dashboard = () => {
                     {request.status === "accepted" && (
                       <button
                         onClick={() => updateRequestStatus(request._id, "completed")}
-                        className="px-3 py-1 rounded-md font-semibold bg-blue-500 hover:bg-blue-600 text-white"
+                        className="bg-green-500 px-3 py-1 rounded-md hover:bg-green-600 text-white"
                       >
                         Complete
                       </button>
@@ -409,16 +409,14 @@ const Dashboard = () => {
               ))}
             </ul>
           ) : (
-            <p>No service requests yet.</p>
+            <p>No service requests available.</p>
           )}
         </section>
 
         {/* Skill Credits */}
-        <section className="p-6 bg-white rounded-2xl shadow-xl border border-gray-200 text-center">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-2">Skill Credits</h2>
-          <p className="text-lg">
-            You have <span className="font-bold">{credits}</span> credits available.
-          </p>
+        <section className="p-6 bg-white rounded-2xl shadow-xl border border-gray-200">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Skill Credits</h2>
+          <p>You have <strong>{credits}</strong> credits.</p>
         </section>
       </div>
     </div>
