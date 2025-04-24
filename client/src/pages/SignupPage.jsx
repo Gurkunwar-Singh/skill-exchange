@@ -38,7 +38,7 @@ const SignupPage = () => {
     setError('');
 
     try {
-      await axios.post('http://localhost:5000/api/signup', {
+      await axios.post('/api/signup', {
         name,
         email,
         password,

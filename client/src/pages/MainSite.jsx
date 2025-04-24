@@ -11,7 +11,7 @@ const MainSite = () => {
         const fetchUser = async () => {
             try {
                 const token = localStorage.getItem("token");
-                const response = await axios.get("http://localhost:5000/api/user", {
+                const response = await axios.get("/api/user", {
                     headers: token ? { Authorization: `Bearer ${token}` } : {},
                 });
                 setUser(response.data);

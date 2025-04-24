@@ -17,7 +17,7 @@ const LoginPage = () => {
     const baseUrl =  import.meta.env.VITE_PROD_BASE_URL;
     console.log(baseUrl)
     try {
-      const response = await axios.post(`http://localhost:5000/api/login`, {
+      const response = await axios.post(`${baseUrl}/api/login`, {
         email,
         password,
       });
