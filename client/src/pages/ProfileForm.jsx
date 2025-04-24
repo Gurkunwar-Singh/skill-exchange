@@ -40,7 +40,7 @@ const ProfileCreation = () => {
         setLoading(true);
         setError("");
         try {
-            await axios.post("http://localhost:5000/api/send-otp", { email });
+            await axios.post("/api/send-otp", { email });
             setOtpSent(true);
         } catch (err) {
             setError("Failed to send OTP. Please try again.");
