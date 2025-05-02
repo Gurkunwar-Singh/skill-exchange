@@ -59,7 +59,7 @@ const ProfileCreation = () => {
         setError("");
         try {
             await axios.post(`${baseUrl}/api/verify-otp`, { email, otp });
-            await axios.post("/api/create-profile", {
+            await axios.post(`${baseUrl}/api/create-profile`, {
                 name,
                 email,
                 bio,
