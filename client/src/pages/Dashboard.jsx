@@ -265,12 +265,12 @@ const Dashboard = () => {
       setLoading(false);
     }
   };
-
+  const apiUrl =import.meta.env.VITE_PROD_BASE_URL;;
   const setupWebSocket = () => {
     const token = localStorage.getItem("token");
     if (!token) return;
 
-    const newSocket = io("http://localhost:5000");
+    const newSocket = io(apiUrl);
     newSocket.emit("join", token);
 
     newSocket.on("updateMatches", (newMatches) => setMatches(newMatches));
@@ -382,8 +382,8 @@ const Dashboard = () => {
 
           {requests.length > 0 ? (
             <ul className="space-y-3">
-              {requests.map((request) => (
-                <li key={request._id} className="p-4 rounded-lg flex justify-between items-center bg-slate-100">
+              {requests.map((request,index) => (
+                <li key={request._id||index} className="p-4 rounded-lg flex justify-between items-center bg-slate-100">
                   <span>
                     {request.description} – <strong>{request.status}</strong>
                   </span>
