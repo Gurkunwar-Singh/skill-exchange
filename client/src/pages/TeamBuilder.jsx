@@ -67,8 +67,8 @@ const TeamBuilder = () => {
   const [newTeamName, setNewTeamName] = useState('');
   const baseUrl =  import.meta.env.VITE_PROD_BASE_URL;
   useEffect(() => {
-    axios.get(`$${baseUrl}/api/teams`).then(res => setTeams(res.data));
-    axios.get(`$${baseUrl}/api/teams/users`).then(res => setUsers(res.data));
+    axios.get(`${baseUrl}/api/teams`).then(res => setTeams(res.data));
+    axios.get(`${baseUrl}/api/teams/users`).then(res => setUsers(res.data));
   }, []);
 
   const handleDrop = async (user, team) => {

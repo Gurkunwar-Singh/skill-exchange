@@ -35,7 +35,7 @@ const Dashboard = () => {
         return;
       }
 
-      const { data } = await axios.get(`$${baseUrl}/api/dashboard`, {
+      const { data } = await axios.get(`${baseUrl}/api/dashboard`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -50,12 +50,12 @@ const Dashboard = () => {
       setLoading(false);
     }
   };
-  const apiUrl =import.meta.env.VITE_PROD_BASE_URL;
+  
   const setupWebSocket = () => {
     const token = localStorage.getItem("token");
     if (!token) return;
 
-    const newSocket = io(apiUrl);
+    const newSocket = io(baseUrl);
     newSocket.emit("join", token);
 
     newSocket.on("updateMatches", (newMatches) => setMatches(newMatches));
