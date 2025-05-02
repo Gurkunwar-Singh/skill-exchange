@@ -14,8 +14,8 @@ const AgreementForm = () => {
         serviceTitle: title,
         terms,
       };
-      const res = await axios.post(`${API_BASE_URL}/api/agreements`, agreement);
-      window.open(`${API_BASE_URL}/api/agreements/${res.data._id}/download`);
+      const res = await axios.post(`${baseUrl}/api/agreements`, agreement);
+      window.open(`${baseUrl}/api/agreements/${res.data._id}/download`);
     } catch (err) {
       console.error('Failed to submit agreement:', err);
       alert('Error submitting agreement');

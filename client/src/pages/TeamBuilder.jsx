@@ -65,15 +65,15 @@ const TeamBuilder = () => {
   const [teams, setTeams] = useState([]);
   const [users, setUsers] = useState([]);
   const [newTeamName, setNewTeamName] = useState('');
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ;
+  const baseUrl =  import.meta.env.VITE_PROD_BASE_URL;
   useEffect(() => {
-    axios.get(`${API_BASE_URL}/api/teams`).then(res => setTeams(res.data));
-    axios.get(`${API_BASE_URL}/api/teams/users`).then(res => setUsers(res.data));
+    axios.get(`$${baseUrl}/api/teams`).then(res => setTeams(res.data));
+    axios.get(`$${baseUrl}/api/teams/users`).then(res => setUsers(res.data));
   }, []);
 
   const handleDrop = async (user, team) => {
-    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ;
-    const updated = await axios.post(`${API_BASE_URL}/api/teams/addMember`, {
+    const baseUrl =  import.meta.env.VITE_PROD_BASE_URL;
+    const updated = await axios.post(`${baseUrl}/api/teams/addMember`, {
       teamId: team._id,
       userId: user._id,
     });
@@ -81,9 +81,9 @@ const TeamBuilder = () => {
   };
 
   const handleCreateTeam = async () => {
-    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ;
+    const baseUrl =  import.meta.env.VITE_PROD_BASE_URL;
     if (newTeamName.trim()) {
-      const newTeam = await axios.post(`${API_BASE_URL}/api/teams/create`, { name: newTeamName });
+      const newTeam = await axios.post(`${baseUrl}/api/teams/create`, { name: newTeamName });
       setTeams([...teams, newTeam.data]);
       setNewTeamName('');
     }
