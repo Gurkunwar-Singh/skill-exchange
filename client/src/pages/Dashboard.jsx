@@ -81,6 +81,7 @@ const Dashboard = () => {
       setError("Failed to create service request.");
     }
   };
+  console.log(requests);
 console.log(requests.length);
   const updateRequestStatus = async (id, newStatus) => {
     try {
