@@ -31,7 +31,7 @@ const ProfileCreation = () => {
     };
 
     const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.toLowerCase());
-
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ;
     const sendOtp = async () => {
         if (!validateEmail(email)) {
             setError("Please enter a valid email address.");
@@ -40,7 +40,7 @@ const ProfileCreation = () => {
         setLoading(true);
         setError("");
         try {
-            await axios.post("/api/send-otp", { email });
+            await axios.post(`${API_BASE_URL}/api/send-otp`, { email });
             setOtpSent(true);
         } catch (err) {
             setError("Failed to send OTP. Please try again.");
@@ -58,7 +58,7 @@ const ProfileCreation = () => {
         setLoading(true);
         setError("");
         try {
-            await axios.post("/api/verify-otp", { email, otp });
+            await axios.post(`${API_BASE_URL}/api/verify-otp`, { email, otp });
             await axios.post("/api/create-profile", {
                 name,
                 email,

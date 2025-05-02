@@ -7,7 +7,7 @@ function MilestoneTracker({ tradeId }) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [dueDate, setDueDate] = useState('');
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ;
   useEffect(() => {
     if (tradeId) {
       fetchMilestones();

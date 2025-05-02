@@ -21,7 +21,7 @@ const SignupPage = () => {
   const validatePassword = (password) => {
     return password.length >= 6;
   };
-
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -38,7 +38,7 @@ const SignupPage = () => {
     setError('');
 
     try {
-      await axios.post('/api/signup', {
+      await axios.post(`${API_BASE_URL}/api/signup`, {
         name,
         email,
         password,
