@@ -7,7 +7,7 @@ function MilestoneTracker({ tradeId }) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [dueDate, setDueDate] = useState('');
-
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
   useEffect(() => {
     if (tradeId) {
       fetchMilestones();
@@ -16,7 +16,7 @@ function MilestoneTracker({ tradeId }) {
 
   const fetchMilestones = async () => {
     try {
-      const res = await axios.get(`/api/milestones/${tradeId}`);
+      const res = await axios.get(`${API_BASE_URL}/api/milestones/${tradeId}`);
       setMilestones(res.data);
     } catch (error) {
       console.error("Error fetching milestones:", error.message);
@@ -33,7 +33,8 @@ function MilestoneTracker({ tradeId }) {
     console.log("Sending milestone:", newMilestone);
 
     try {
-      await axios.post('/api/milestones', newMilestone);
+      await axios.post(`${API_BASE_URL}/api/milestones`, newMilestone);
+
       setTitle('');
       setDescription('');
       setDueDate('');

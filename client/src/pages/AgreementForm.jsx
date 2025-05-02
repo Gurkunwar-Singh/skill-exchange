@@ -6,7 +6,7 @@ const AgreementForm = () => {
   const [title, setTitle] = useState('');
   const [terms, setTerms] = useState('');
   const [loading, setLoading] = useState(false);
-
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
   const handleSubmit = async () => {
     try {
       setLoading(true);
@@ -14,8 +14,8 @@ const AgreementForm = () => {
         serviceTitle: title,
         terms,
       };
-      const res = await axios.post('/api/agreements', agreement);
-      window.open(`/api/agreements/${res.data._id}/download`);
+      const res = await axios.post(`${API_BASE_URL}/api/agreements`, agreement);
+      window.open(`${API_BASE_URL}/api/agreements/${res.data._id}/download`);
     } catch (err) {
       console.error('Failed to submit agreement:', err);
       alert('Error submitting agreement');

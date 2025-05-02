@@ -5,6 +5,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import MainNavbar from '../components/mainNavbar';
 
 const DraggableUser = ({ user }) => {
+  
   const [{ isDragging }, drag] = useDrag(() => ({
     type: 'user',
     item: { user },
@@ -64,14 +65,15 @@ const TeamBuilder = () => {
   const [teams, setTeams] = useState([]);
   const [users, setUsers] = useState([]);
   const [newTeamName, setNewTeamName] = useState('');
-
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
   useEffect(() => {
-    axios.get('/api/teams').then(res => setTeams(res.data));
-    axios.get('/api/teams/users').then(res => setUsers(res.data));
+    axios.get(`${API_BASE_URL}/api/teams`).then(res => setTeams(res.data));
+    axios.get(`${API_BASE_URL}/api/teams/users`).then(res => setUsers(res.data));
   }, []);
 
   const handleDrop = async (user, team) => {
-    const updated = await axios.post('/api/teams/addMember', {
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
+    const updated = await axios.post(`${API_BASE_URL}/api/teams/addMember`, {
       teamId: team._id,
       userId: user._id,
     });
@@ -79,8 +81,9 @@ const TeamBuilder = () => {
   };
 
   const handleCreateTeam = async () => {
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
     if (newTeamName.trim()) {
-      const newTeam = await axios.post('/api/teams/create', { name: newTeamName });
+      const newTeam = await axios.post(`${API_BASE_URL}/api/teams/create`, { name: newTeamName });
       setTeams([...teams, newTeam.data]);
       setNewTeamName('');
     }

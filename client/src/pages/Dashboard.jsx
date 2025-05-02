@@ -16,7 +16,7 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [socket, setSocket] = useState(null);
   const navigate = useNavigate();
-
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
   useEffect(() => {
     fetchDashboardData();
     const newSocket = setupWebSocket();
@@ -35,7 +35,7 @@ const Dashboard = () => {
         return;
       }
 
-      const { data } = await axios.get("/api/dashboard", {
+      const { data } = await axios.get(`${API_BASE_URL}/api/dashboard`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -70,7 +70,7 @@ const Dashboard = () => {
     try {
       const token = localStorage.getItem("token");
       await axios.post(
-        "/api/service-requests",
+        `${API_BASE_URL}/api/service-requests`,
         { description: newRequest },
         { headers: { Authorization: `Bearer ${token}` } }
       );
